@@ -33,10 +33,9 @@ let () =
   | None => ()
   };
 
-let ocaml_syntax = {
-  Refmt_api.ML.print_implementation_with_comments(
-    Format.str_formatter,
-    astAndComments,
-  );
-  Format.flush_str_formatter();
-};
+Refmt_api.ML.print_implementation_with_comments(
+  Format.str_formatter,
+  astAndComments,
+);
+let ocamlCode = Format.flush_str_formatter();
+Js.log(ocamlCode);
