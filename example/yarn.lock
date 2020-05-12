@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-"@jchavarri/bs-refmt@link:..":
-  version "0.0.0"
-  uid ""
+"@jchavarri/bs-refmt@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@jchavarri/bs-refmt/-/bs-refmt-0.0.2.tgz#00c4ce03916c94798b7a73535cde44e3e15d8b61"
+  integrity sha512-COta3K9AANrzOVeqGdPR8sfI6bcIZ/++1PfEh5TcZlm/Wz62vACv1XqyYQtvvlaArK8ahVZ8gk8nZCJTKmc1kw==
 
 "@types/events@*":
   version "3.0.0"
