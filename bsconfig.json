@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "sources": {
     "dir": "src",
-    "subdirs": true,
-    "public": ["Refmt_api"]
+    "subdirs": true
   },
   "package-specs": {
     "module": "commonjs",
