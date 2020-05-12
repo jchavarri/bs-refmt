@@ -21,13 +21,13 @@ Note: right now this package needs a patched version of BuckleScript to work. Fo
 ## Example usage
 
 ```reason
-[%bs.raw {|require("./index.css")|}];
-
-let ast_and_comments =
-  Lexing.from_string("let f = a => a->Belt.Option.map(f => f * 2);")
+let reasonCode = "let t = Some(2)->Belt.Option.map(a => a * 2)";
+let astAndComments =
+  Lexing.from_string(reasonCode)
   |> Refmt_api.RE.implementation_with_comments;
 
-let structure = astAndComments->fst;
+Js.log("AST for: " ++ reasonCode);
+Js.log(astAndComments);
 
 let firstItem = structure->Belt.List.head;
 
@@ -76,6 +76,22 @@ Printing code text from an AST also works.
 - How is the main `Js_refmt_compiler.ml` generated?
 
 It's taken from BuckleScript repo, where [some ninja script](https://github.com/jchavarri/bucklescript/blob/7aada144d89b31f8b17c0db26fcc4d9596c4050d/jscomp/snapshot.ninja#L61-L63) generates it.
+
+In particular, the file vendored in the repo was created from [this branch](https://github.com/jchavarri/bucklescript/tree/compile-refmt-all).
+
+- How is this different from refmt.js / `reason` package?
+
+refmt.js (see [docs](https://github.com/facebook/reason/blob/master/USING_PARSER_PROGRAMMATICALLY.md)) is version of refmt compiled with js_of_ocaml for JavaScript, but it can't be directly from BuckleScript.
+
+- How is this different from [glennsl/bsrefmt](https://github.com/glennsl/bs-refmt)?
+
+glennsl/refmt are BuckleScript bindings to the JavaScript API exposed from refmt.js. It _is_ a BuckleScript library, but the internals of the AST are completely opaque, only the surface API is typed (through the bindings).
+
+On the other hand, this library gives full access to the internal AST of the resulting parsed tree.
+
+- I don't see module X
+
+For now, only a couple of modules are exposed (see `Refmt_api.ml`), but if you need access to more modules, please open an issue or a PR for it.
 
 - I get "TypeError: name is undefined" at runtime
 

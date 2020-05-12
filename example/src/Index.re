@@ -1,9 +1,11 @@
 [%bs.raw {|require("./index.css")|}];
 
+let reasonCode = "let t = Some(2)->Belt.Option.map(a => a * 2)";
 let astAndComments =
-  Lexing.from_string("let t = Some(2)->Belt.Option.map(a => a * 2)")
+  Lexing.from_string(reasonCode)
   |> Refmt_api.RE.implementation_with_comments;
 
+Js.log("AST for: " ++ reasonCode);
 Js.log(astAndComments);
 
 let structure = astAndComments->fst;
