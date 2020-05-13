@@ -79,13 +79,13 @@ It's taken from BuckleScript repo, where [some ninja script](https://github.com/
 
 In particular, the file vendored in the repo was created from [this branch](https://github.com/jchavarri/bucklescript/tree/compile-refmt-all).
 
-- How is this different from refmt.js / `reason` package?
+- How is this different from `refmt.js` / npm `reason` package?
 
-refmt.js (see [docs](https://github.com/facebook/reason/blob/master/USING_PARSER_PROGRAMMATICALLY.md)) is version of refmt compiled with js_of_ocaml for JavaScript, but it can't be directly from BuckleScript.
+`refmt.js` (see [docs](https://github.com/facebook/reason/blob/master/USING_PARSER_PROGRAMMATICALLY.md)) is a packaging of refmt compiled with js_of_ocaml into JavaScript, but it can't be directly used from BuckleScript without bindings.
 
-- How is this different from [glennsl/bsrefmt](https://github.com/glennsl/bs-refmt)?
+- How is this different from [`glennsl/bs-refmt`](https://github.com/glennsl/bs-refmt)?
 
-glennsl/refmt are BuckleScript bindings to the JavaScript API exposed from refmt.js. It _is_ a BuckleScript library, but the internals of the AST are completely opaque, only the surface API is typed (through the bindings).
+`glennsl/bs-refmt` are the BuckleScript bindings to the JavaScript API exposed from refmt.js. It definitely _is_ a BuckleScript library, but the internals of the AST are opaque, only the surface API is typed (through the bindings).
 
 On the other hand, this library gives full access to the internal AST of the resulting parsed tree.
 
