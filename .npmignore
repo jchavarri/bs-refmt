@@ -28,3 +28,6 @@ example/
 node_modules/
 lib/
 *.bs.js
+esy.json
+_esy/
+esy.lock/
