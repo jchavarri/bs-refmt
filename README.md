@@ -73,11 +73,18 @@ It could help to experiment or build applications that require to enter some tex
 
 Printing code text from an AST also works.
 
-- How is the main `Js_refmt_compiler.ml` generated?
+- How is the file `Reason_toolchain_packed.ml` generated?
 
-It's taken from BuckleScript repo, where [some ninja script](https://github.com/jchavarri/bucklescript/blob/7aada144d89b31f8b17c0db26fcc4d9596c4050d/jscomp/snapshot.ninja#L61-L63) generates it.
+It's taken from Reason repo. Steps to generate it:
 
-In particular, the file vendored in the repo was created from [this branch](https://github.com/jchavarri/bucklescript/tree/compile-refmt-all).
+```bash
+cd .. # one folder up from root folder
+git clone https://github.com/jchavarri/reason/
+git checkout bs-refmt
+cd bspacks
+./bspacks.js
+cp output/4061/refmt.ml ../../bs-refmt/src/Reason_toolchain_packed.ml
+```
 
 - How is this different from `refmt.js` / npm `reason` package?
 
@@ -92,24 +99,3 @@ On the other hand, this library gives full access to the internal AST of the res
 - I don't see module X
 
 For now, only a couple of modules are exposed (see `Refmt_api.ml`), but if you need access to more modules, please open an issue or a PR for it.
-
-- I get "TypeError: name is undefined" at runtime
-
-Right now, this library requires a patched version of BuckleScript to work. To make it work:
-
-```bash
-# In another folder
-git clone https://github.com/jchavarri/bucklescript
-cd bucklescript
-git checkout -b compile-refmt-all origin/compile-refmt-all
-git submodule update --init && node scripts/buildocaml.js
-./scripts/ninja.js config && ./scripts/ninja.js build
-node scripts/install.js
-yarn link
-```
-
-Then in your project folder:
-
-```
-yarn link bs-platform
-```
