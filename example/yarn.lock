@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@jchavarri/bs-refmt@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@jchavarri/bs-refmt/-/bs-refmt-0.0.2.tgz#00c4ce03916c94798b7a73535cde44e3e15d8b61"
-  integrity sha512-COta3K9AANrzOVeqGdPR8sfI6bcIZ/++1PfEh5TcZlm/Wz62vACv1XqyYQtvvlaArK8ahVZ8gk8nZCJTKmc1kw==
+"@jchavarri/bs-refmt@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@jchavarri/bs-refmt/-/bs-refmt-0.0.3.tgz#c8c54efd2513d6fbee21d6b9f9f62f561dd967de"
+  integrity sha512-I1E9BYhEfGiEFMQL4/Ap21JdNVc3G2xKzwNzWDC1igBVkYsRRaR//BMn+gJgA5e6vA14Pe21r16AvMccFhF/AA==
 
 "@types/events@*":
   version "3.0.0"

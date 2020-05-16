@@ -25,6 +25,6 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
-    "@jchavarri/bs-refmt": "^0.0.2"
+    "@jchavarri/bs-refmt": "^0.0.3"
   }
 }
