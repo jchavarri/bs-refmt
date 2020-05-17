@@ -1,6 +1,6 @@
 # bs-refmt
 
-This is a (very rough) wrapper for [`refmt`](https://github.com/facebook/reason), the Reason parser / printer, packaged as a BuckleScript library.
+[`refmt`](https://github.com/facebook/reason), the Reason parser / printer, packaged as a BuckleScript library.
 
 ## Install
 
@@ -15,8 +15,6 @@ Then include the library in your bsconfig.json:
 ```
 "bs-dependencies": ["@jchavarri/bs-refmt"],
 ```
-
-Note: right now this package needs a patched version of BuckleScript to work. For details, see FAQ section below.
 
 ## Example usage
 
@@ -71,7 +69,7 @@ Check another example file in the [`example`](./example/src/Index.re) folder.
 
 It could help to experiment or build applications that require to enter some text, and parse it into a "fully fleshed" OCaml AST (abstract syntax tree) to be processed, printed, displayed, manipulated visually or otherwise.
 
-Printing code text from an AST also works.
+Printing code text from an AST also works. As well as "in-browser" ppxs.
 
 - How is the file `Reason_toolchain_packed.ml` generated?
 
@@ -86,16 +84,27 @@ cd bspacks
 cp output/4061/refmt.ml ../../bs-refmt/src/Reason_toolchain_packed.ml
 ```
 
-- How is this different from `refmt.js` / npm `reason` package?
-
-`refmt.js` (see [docs](https://github.com/facebook/reason/blob/master/USING_PARSER_PROGRAMMATICALLY.md)) is a packaging of refmt compiled with js_of_ocaml into JavaScript, but it can't be directly used from BuckleScript without bindings.
-
-- How is this different from [`glennsl/bs-refmt`](https://github.com/glennsl/bs-refmt)?
-
-`glennsl/bs-refmt` are the BuckleScript bindings to the JavaScript API exposed from refmt.js. It definitely _is_ a BuckleScript library, but the internals of the AST are opaque, only the surface API is typed (through the bindings).
-
-On the other hand, this library gives full access to the internal AST of the resulting parsed tree.
-
 - I don't see module X
 
-For now, only a couple of modules are exposed (see `Refmt_api.ml`), but if you need access to more modules, please open an issue or a PR for it.
+For now, only a couple of modules are exposed (see `Refmt_api.ml`) for simplicity.
+To access all modules reach for the bspacked module `Reason_toolchain_packed`.
+
+## Previous work
+
+- `refmt.js` / npm `reason` package?
+
+`refmt.js` (see [docs](https://github.com/facebook/reason/blob/master/USING_PARSER_PROGRAMMATICALLY.md)) is a packaging of refmt compiled with js_of_ocaml into JavaScript.
+
+- [`glennsl/bs-refmt`](https://github.com/glennsl/bs-refmt)
+
+`glennsl/bs-refmt` are the BuckleScript bindings to the JavaScript API exposed from refmt.js. It _is_ a BuckleScript library like this one, but the internals of the AST are opaque, one can only get types for the data that is explicitly typed in the bindings.
+
+The main difference between previous approaches and this iteration is that now there is full access to the types of the resulting parsed tree.
+
+## Thanks
+
+This library is a very thin wrapper, building on top of the effort done by the projects mentioned above, as well as the shoulders of giants below:
+
+- [The OCaml compiler](https://github.com/ocaml/ocaml)
+- [The Reason parser / printer](https://github.com/facebook/reason), aka refmt
+- [The BuckleScript compiler](https://github.com/BuckleScript/bucklescript/) and [bspack](https://github.com/BuckleScript/bucklescript/blob/676c4b5d605061f7b479388b3ba37ede01722783/jscomp/main/bspack_main.ml)

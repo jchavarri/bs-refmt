@@ -1,6 +1,6 @@
 {
   "name": "@jchavarri/bs-refmt",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
@@ -12,5 +12,8 @@
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^7.3.2"
-  }
+  },
+  "peerDependencies": {
+    "bs-platform": "^7.1.1"
+  }  
 }
